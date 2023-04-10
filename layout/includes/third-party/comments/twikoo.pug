@@ -9,21 +9,19 @@ script.
         envId: '!{envId}',
         region: '!{region}',
         onCommentLoaded: function () {
-          btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+          btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
         }
       }, !{JSON.stringify(option)}))
     }
 
     const getCount = () => {
-      const countELement = document.getElementById('twikoo-count')
-      if(!countELement) return
       twikoo.getCommentsCount({
         envId: '!{envId}',
         region: '!{region}',
         urls: [window.location.pathname],
         includeReply: false
       }).then(function (res) {
-        countELement.innerText = res[0].count
+        document.getElementById('twikoo-count').innerText = res[0].count
       }).catch(function (err) {
         console.error(err);
       });
@@ -39,7 +37,7 @@ script.
         setTimeout(runFn,0)
         return
       } 
-      getScript('!{url_for(theme.asset.twikoo)}').then(runFn)
+      getScript('!{theme.CDN.twikoo}').then(runFn)
     }
 
     if ('!{use[0]}' === 'Twikoo' || !!{lazyload}) {

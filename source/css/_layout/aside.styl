@@ -38,7 +38,24 @@
         margin-top: -.42em
 
     .card-info-data
+      display: table
       margin: 14px 0 4px
+      width: 100%
+      table-layout: fixed
+
+      & > .card-info-data-item
+        display: table-cell
+
+        a
+          .headline
+            @extend .limit-one-line
+            color: var(--font-color)
+            font-size: 1em
+
+          .length-num
+            margin-top: -.42em
+            color: var(--text-highlight-color)
+            font-size: 1.4em
 
     .card-info-social-icons
       margin: 6px 0 -6px
@@ -52,7 +69,7 @@
         transition: all .3s
 
         &:hover
-          transform: rotate(360deg)
+          transform: rotate(540deg)
 
     #card-info-btn
       display: block
@@ -115,7 +132,7 @@
         width: w = 4.2em
         height: w
 
-        :first-child
+        & > img
           @extend .imgHover
 
       .content
@@ -291,8 +308,8 @@
           background: $theme-toc-color
           color: $toc-active-color
 
-  .sticky_layout:only-child
-    > :first-child
+  :only-child
+    > .card-widget
       margin-top: 0
 
   .card-more-btn
@@ -322,30 +339,6 @@
 
     &:hover
       transform: rotate(360deg)
-
-.site-data
-  display: table
-  width: 100%
-  table-layout: fixed
-
-  & > a
-    display: table-cell
-
-    div
-      transition: all .3s
-
-    &:hover
-      div
-        color: $theme-color !important
-
-    .headline
-      @extend .limit-one-line
-      color: var(--font-color)
-
-    .length-num
-      margin-top: -.32em
-      color: var(--text-highlight-color)
-      font-size: 1.4em
 
 @keyframes more-btn-move
   0%,
@@ -403,7 +396,7 @@
 
   if hexo-config('aside.card_archives.sort_order')
     .card-archives
-      order: hexo-config('aside.card_archives.sort_order')
+      order: hexo-config('aside.card-archives.sort_order')
 
   if hexo-config('aside.card_webinfo.sort_order')
     .card-webinfo
